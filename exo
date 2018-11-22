@@ -5,6 +5,7 @@ from MaBase_MIB import *
 
 ### Question 1 : quel est l'ensemble des gardiens?
 print("écrire 'les_gardiens' pour l'ensemble des gardiens, 'les_villes_agents' pour l'ensemble des villes d'origine des agents ou 'triples' pour no de cabine,alien,gardien")
+
 les_gardiens = {gardien.Nom for gardien in BaseGardiens}
 
 les_villes_agents = {agent.Ville for agent in BaseAgents}
