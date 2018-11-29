@@ -3,47 +3,46 @@
 
 from MaBase_MIB import *
 
-print" quel est l'ensemble des gardiens?"
+print(" quel est l'ensemble des gardiens? ")
 q1={gardien.Nom for gardien in BaseGardiens }
-print q1
+print (q1)
 
-print" quel est l'ensemble des villes d'origine des agents?"
+print(" quel est l'ensemble des villes d'origine des agents?")
 q2= { agent.Ville for agent in BaseAgents }
-print q2
+print (q2)
 
-print" quel est l'ensemble des triplets (no de cabine,alien,gardien) pour chaque cabine?"
+print(" quel est l'ensemble des triplets (no de cabine,alien,gardien) pour chaque cabine?")
 q3={ (alien.NoCabine, alien.Nom, gardien.Nom) for alien in BaseAliens  for gardien in BaseGardiens if gardien.NoCabine == alien.NoCabine }
-print q3
+print (q3)
 
-print" quel est l'ensemble des couples (alien,allée) pour chaque alien?"
+print(" quel est l'ensemble des couples (alien,allée) pour chaque alien?")
 q4={ (alien.Nom, cabine.NoAllee) for alien in BaseAliens for cabine in BaseCabines if alien.NoCabine==cabine.NoCabine }
-print q4
+print (q4)
 
-print" quel est l'ensemble de tous les aliens de l'allée 2?"
+print(" quel est l'ensemble de tous les aliens de l'allée 2?")
 q5={ (alien.Nom) for alien in BaseAliens for cabine in BaseCabines if alien.NoCabine==cabine.NoCabine and cabine.NoAllee=='2'}
-print q5
+print (q5)
 
-print" quel est l'ensemble de toutes les planètes dont sont originaires les aliens habitant une cellule de numéro pair?"
+print(" quel est l'ensemble de toutes les planètes dont sont originaires les aliens habitant une cellule de numéro pair?")
 q6={ (alien.Planete) for alien in BaseAliens if float(alien.NoCabine)%2==0 }
-print q6
+print (q6)
 
-print": quel est l'ensemble des aliens dont les gardiens sont originaires de Terminus?"
+print(" quel est l'ensemble des aliens dont les gardiens sont originaires de Terminus?")
 q7={ (alien.Nom) for alien in BaseAliens for gardien in BaseGardiens for agent in BaseAgents if alien.NoCabine==gardien.NoCabine and gardien.Nom==agent.Nom and agent.Ville=='Terminus'}
-print q7
+print (q7)
 
-print" quel est l'ensemble des gardiens des aliens féminins qui mangent du bortsch?"
+print(" quel est l'ensemble des gardiens des aliens féminins qui mangent du bortsch?")
 q8={ (gardien.Nom) for gardien in BaseGardiens for alien in BaseAliens for miam in BaseMiams if miam.Aliment=='Bortsch' and miam.NomAlien==alien.Nom and alien.Sexe=='F' and alien.NoCabine==gardien.NoCabine }
-print q8
+print (q8)
 
-print" quel est l'ensemble des cabines dont les gardiens sont originaires de Terminus ou dont les aliens sont des filles?"
+print(" quel est l'ensemble des cabines dont les gardiens sont originaires de Terminus ou dont les aliens sont des filles?")
 q9={ (cabine.NoCabine) for cabine in BaseCabines for gardien in BaseGardiens for alien in BaseAliens for agent in BaseAgents if (gardien.Nom==agent.Nom and agent.Ville=='Terminus' and gardien.NoCabine==cabine.NoCabine) or (alien.Sexe=='F' and alien.NoCabine==cabine.NoCabine) }
-print q9
+print (q9)
 
-print" Y a-t-il des aliments qui commencent par la même lettre que le nom du gardien qui surveille l'alien qui les mange ?"
+print(" Y a-t-il des aliments qui commencent par la même lettre que le nom du gardien qui surveille l'alien qui les mange ?")
 q10={ (gardien.Nom,miam.Aliment) for gardien in BaseGardiens for miam in BaseMiams for alien in BaseAliens if miam.NomAlien==alien.Nom and alien.NoCabine==gardien.NoCabine and miam.Aliment[0]==gardien.Nom[0] }
-print q10
+print (q10)
 
-print" Y a-t-il des aliens originaires d'Euterpe ?"
+print(" Y a-t-il des aliens originaires d'Euterpe ?")
 q11={ (alien.Nom) for alien in BaseAliens if alien.Planete=='Euterpe' }
-print q11
-
+print (q11)
