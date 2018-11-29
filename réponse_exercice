@@ -1,0 +1,34 @@
+#TP_alien
+
+quel est l'ensemble des gardiens?
+{'Branno', 'Trevize', 'Darell', 'Dornick', 'Hardin', 'Demerzel', 'Seldon', 'Pelorat', 'Riose'}
+
+ quel est l'ensemble des villes d'origine des agents?
+{'Hesperos', 'Kalgan', 'Terminus', 'Uco'}
+
+ quel est l'ensemble des triplets (no de cabine,alien,gardien) pour chaque cabine?
+{('7', 'Zzzzzz', 'Trevize'), ('2', 'Blorx', 'Darell'), ('3', 'Urxiz', 'Demerzel'), ('6', 'Mulzo', 'Hardin'), ('4', 'Darneurane', 'Seldon'), ('1', 'Zorglub', 'Branno'), ('9', 'Joranum', 'Riose'), ('8', 'Arghh', 'Pelorat'), ('4', 'Zbleurdite', 'Seldon')}
+
+ quel est l'ensemble des couples (alien,allée) pour chaque alien?
+{('Zorglub', '1'), ('Zzzzzz', '2'), ('Joranum', '2'), ('Blorx', '1'), ('Mulzo', '2'), ('Darneurane', '1'), ('Urxiz', '1'), ('Arghh', '2'), ('Zbleurdite', '1')}
+
+ quel est l'ensemble de tous les aliens de l'allée 2?
+{'Zzzzzz', 'Arghh', 'Joranum', 'Mulzo'}
+
+ quel est l'ensemble de toutes les planètes dont sont originaires les aliens habitant une cellule de numéro pair?
+{'Trantor', 'Nexon', 'Euterpe', 'Helicon'}
+
+ quel est l'ensemble des aliens dont les gardiens sont originaires de Terminus?
+{'Joranum', 'Zorglub', 'Mulzo', 'Zbleurdite', 'Blorx', 'Darneurane'}
+
+ quel est l'ensemble des gardiens des aliens féminins qui mangent du bortsch?
+{'Seldon', 'Riose'}
+
+ quel est l'ensemble des cabines dont les gardiens sont originaires de Terminus ou dont les aliens sont des filles?
+{'1', '2', '9', '6', '4', '7'}
+
+ Y a-t-il des aliments qui commencent par la même lettre que le nom du gardien qui surveille l'alien qui les mange ?
+{('Seldon', 'Schwanstucke'), ('Branno', 'Bortsch')}
+
+ Y a-t-il des aliens originaires d'Euterpe ?
+{'Joranum', 'Blorx'}
