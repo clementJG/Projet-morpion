@@ -7,6 +7,18 @@ from random import*
 fenetre = Tk()
 fenetre.title("Morpion")
 
+#tour 0=nous 1=ordi 3=stop
+t=int(input("entre 0 pour commencer ou 1 pour être 2ème"))
+while ( t!=0 and t!=1):
+    t=int(input("entre 0 pour commencer ou 1 pour être 2ème"))
+
+########niveau ordi
+y=int(input("entrer le niveau de lordinateur 1=normale 2=aléatoire"))
+while ( y!=1 and y!=2):
+    y=int(input("entrer le niveau de lordinateur 1=normale 2=aléatoire"))
+    
+print("Le tableau s'est affiché dans une nouvelle page")
+
 #Création de la grille de jeu grâce à l'outil canvas
 canvas = Canvas(fenetre, width=820, height=620, background='light steel blue')
 ligne1 = canvas.create_line(10, 10, 10, 610)
@@ -17,6 +29,8 @@ ligne5 = canvas.create_line(10, 10, 610, 10)
 ligne6 = canvas.create_line(10, 210, 610, 210)
 ligne7 = canvas.create_line(10, 410, 610, 410)
 ligne8 = canvas.create_line(10, 610, 610, 610)
+
+
 
 #Définition de fonctions qui créent les croix sur chaque case
 def ca1():
@@ -103,6 +117,12 @@ def rc3():
     cx = 420
     cy = 420
     rond = canvas.create_oval(cx,cy,cx+180,cy+180)
+    
+def random():
+    global tableau
+    global r
+    r=randint(0,len(tableau)-1)
+    print (r)
 
 def vict():
     txt = canvas.create_text(720, 80, text="VICTOIRE", font="Colibri 20", fill="forest green")
@@ -111,11 +131,55 @@ def deft():
     txt = canvas.create_text(720, 80, text="DEFAITE", font="Colibri 20", fill="OrangeRed3")
 
 def egal():
-    txt = canvas.create_text(720, 80, text="EGALITE", font="Colibri 20", fill="dark goldenrod")
+    txt = canvas.create_text(720, 80, text="ÉGALITÉ", font="Colibri 20", fill="dark goldenrod")
 
+def lose():
+    global a1
+    global a2
+    global a3
+    global b1
+    global b2
+    global b3
+    global c1
+    global c2
+    global c3
+    global t
+    global i
+    if (a1==2) and (a2==2) and (a3==2):
+        deft()
+        t=3
+        i=i+1
+    if (b1==2) and (b2==2) and (b3==2):
+        deft()
+        t=3
+        i=i+1
+    if (c1==2) and (c2==2) and (c3==2):
+        deft()
+        t=3
+        i=i+1
+    if (a1==2) and (b1==2) and (c1==2):
+        deft()
+        t=3
+        i=i+1
+    if (a2==2) and (b2==2) and (c2==2):
+        deft()
+        t=3
+        i=i+1
+    if (a3==2) and (b3==2) and (c3==2):
+        deft()
+        t=3
+        i=i+1
+    if (a1==2) and (b2==2) and (c3==2):
+        deft()
+        t=3
+        i=i+1
+    if (a3==2) and (b2==2) and (c1==2):
+        deft()
+        t=3
+        i=i+1
 #Chaque case a une valeur de 0 au début du jeu quand elle est vide, puis de 1 si une croix est dedans, ou de 2 si un rond est dedans
-#tour 0=nous 1=ordi 3=stop
-t=0
+
+tableau=[1,2,3,4,5,6,7,8,9]
 #nbr de coup
 e=0
 #cases
@@ -156,6 +220,81 @@ j=0
 #aléatoire de 1 a 9
 r=0
 
+#si l'ordi commence donc si t==10
+if(t==1 and e==0):
+    if(e!=9):
+        r=randint(1,9)
+        if (r==1):
+            if (a1==0):
+                ra1()
+                a1=2
+                t=0
+                e=e+1
+                tableau.remove(1)
+
+        if (r==2):
+            if(a2==0):
+                ra2()
+                a2=2
+                t=0
+                e=e+1
+                tableau.remove(2)
+
+        if (r==3):
+            if(a3==0) :
+                ra3()
+                a3=2
+                t=0
+                e=e+1
+                tableau.remove(3)
+
+        if (r==4):
+            if(b1==0) :
+                rb1()
+                b1=2
+                t=0
+                e=e+1
+                tableau.remove(4)
+
+        if (r==5):
+            if(b2==0) :
+                rb2()
+                b2=2
+                t=0
+                e=e+1
+                tableau.remove(5)
+
+        if (r==6):
+            if (b3==0) :
+                rb3()
+                b3=2
+                t=0
+                e=e+1
+                tableau.remove(6)
+ 
+        if (r==7):
+            if(c1==0):
+                rc1()
+                c1=2
+                t=1245
+                e=e+1
+                tableau.remove(7)
+
+        if (r==8):
+            if(c2==0):
+                rc2()
+                c2=2
+                t=0
+                e=e+1
+                tableau.remove(8)
+
+        if (r==9):
+            if(c3==0):
+                rc3()
+                c3=2
+                t=0
+                e=e+1
+                tableau.remove(9)
 
 #Quand c'est le tour du joueur, t=1, sinon t=0 quand l'IA joue    
 
@@ -166,7 +305,8 @@ def clicSouris(event):
     global r
     #tour
     global t
-    
+
+#coordonnées
     global a1
     global a2
     global a3
@@ -176,6 +316,7 @@ def clicSouris(event):
     global c1
     global c2
     global c3
+#probabilité ia
     global p1
     global p2
     global p3
@@ -185,6 +326,7 @@ def clicSouris(event):
     global p7
     global p8
     global p9
+#probabilité ia 
     global v1
     global v2
     global v3
@@ -200,6 +342,9 @@ def clicSouris(event):
     global i
     #nbr de coup
     global e
+    ####savoir si le mode de jeu est aléatoire ou non
+    global y
+    global tableau
 
 
 
@@ -210,46 +355,64 @@ def clicSouris(event):
         a1=1
         t=1
         e=e+1
-    elif (xClic)>210 and (xClic)<410 and (yClic)>10 and (yClic)<210 and (a2==0) and (t==0):
+        tableau.remove(1)
+        print(tableau)
+    if (xClic)>210 and (xClic)<410 and (yClic)>10 and (yClic)<210 and (a2==0) and (t==0):
         ca2()
         a2=1
         t=1
         e=e+1
-    elif (xClic)>410 and (xClic)<610 and (yClic)>10 and (yClic)<210 and (a3==0) and (t==0):
+        tableau.remove(2)
+        print(tableau)
+    if (xClic)>410 and (xClic)<610 and (yClic)>10 and (yClic)<210 and (a3==0) and (t==0):
         ca3()
         a3=1
         t=1
         e=e+1
-    elif (xClic)>10 and (xClic)<210 and (yClic)>210 and (yClic)<410 and (b1==0) and (t==0):
+        tableau.remove(3)
+        print(tableau)
+    if (xClic)>10 and (xClic)<210 and (yClic)>210 and (yClic)<410 and (b1==0) and (t==0):
         cb1()
         b1=1
         t=1
         e=e+1
-    elif (xClic)>210 and (xClic)<410 and (yClic)>210 and (yClic)<410 and (b2==0) and (t==0):
+        tableau.remove(4)
+        print(tableau)
+    if (xClic)>210 and (xClic)<410 and (yClic)>210 and (yClic)<410 and (b2==0) and (t==0):
         cb2()
         b2=1
         t=1
         e=e+1
-    elif (xClic)>410 and (xClic)<610 and (yClic)>210 and (yClic)<410 and (b3==0) and (t==0):
+        tableau.remove(5)
+        print(tableau)
+    if (xClic)>410 and (xClic)<610 and (yClic)>210 and (yClic)<410 and (b3==0) and (t==0):
         cb3()
         b3=1
         t=1
         e=e+1
-    elif (xClic)>10 and (xClic)<210 and (yClic)>410 and (yClic)<610 and (c1==0) and (t==0):
+        tableau.remove(6)
+        print(tableau)
+    if (xClic)>10 and (xClic)<210 and (yClic)>410 and (yClic)<610 and (c1==0) and (t==0):
         cc1()
         c1=1
         t=1
         e=e+1
-    elif (xClic)>210 and (xClic)<410 and (yClic)>410 and (yClic)<610 and (c2==0) and (t==0):
+        tableau.remove(7)
+        print(tableau)
+    if (xClic)>210 and (xClic)<410 and (yClic)>410 and (yClic)<610 and (c2==0) and (t==0):
         cc2()
         c2=1
         t=1
         e=e+1
-    elif (xClic)>410 and (xClic)<610 and (yClic)>410 and (yClic)<610 and (c3==0) and (t==0):
+        tableau.remove(8)
+        print(tableau)
+    if (xClic)>410 and (xClic)<610 and (yClic)>410 and (yClic)<610 and (c3==0) and (t==0):
         cc3()
         c3=1
         t=1
         e=e+1
+        tableau.remove(9)
+        print(tableau)
     
 #victoire
 
@@ -257,288 +420,315 @@ def clicSouris(event):
         vict()
         t=3
         j=j+1
-
-
-    
-#probabilité de gagner pour l'IA
-
-    if ((b1==2) and (c1==2) or (b2==2) and (c3==2) or (a2==2) and (a3==2)) and (a1==0) and(t==1):
-        p1=1
-
-    if ((a1==2) and (a3==2) or (b2==2) and (c2==2)) and (a2==0) and(t==1):
-        p2=1
-
-    if ((a1==2) and (a2==2) or (c1==2) and (b2==2) or (b3==2) and (c3==2)) and (a3==0) and(t==1):
-        p3=1
-
-    if ((a1==2) and (c1==2) or (b2==2) and (b3==2)) and (b1==0) and(t==1):
-        p4=1
-
-    if ((a1==2) and (c3==2) or (a3==2) and (c1==2) or (a2==2) and (c2==2) or (b1==2) and (b3==2)) and (b2==0) and(t==1):
-        p5=1
-
-    if ((a3==2) and (c3==2) or (b1==2) and (b2==2)) and (b3==0) and(t==1):
-        p6=1
-
-    if (((a1==2) and (b1==2)) or ((a3==2) and (b2==2)) or ((c2==2) and (c3==2))) and (c1==0) and(t==1):
-        p7=1
-
-    if ((a2==2) and (b2==2) or (c1==2) and (c3==2)) and (c2==0) and(t==1):
-        p8=1
-
-    if ((a1==2) and (b2==2) or (a3==2) and (b3==2) or (c1==2) and (c2==2)) and (c3==0) and(t==1):
-        p9=1
-
-
-#Blocage de l'IA si le joueur peut gagner
         
-    if ((b1==1) and (c1==1) or (b2==1) and (c3==1) or (a2==1) and (a3==1))  and (a1==0) and(t==1):
-        v1=1
+#====================================================================================================
+    if (y==1) and (t==1):
+    #probabilité de gagner pour l'IA
 
-    if ((a1==1) and (a3==1) or (b2==1) and (c2==1)) and (a2==0) and(t==1):
-        v2=1
+        if ((b1==2) and (c1==2) or (b2==2) and (c3==2) or (a2==2) and (a3==2)) and (a1==0) and(t==1):
+            p1=1
 
-    if ((a1==1) and (a2==1) or (c1==1) and (b2==1) or (b3==1) and (c3==1))   and (a3==0) and(t==1):
-        v3=1
+        if ((a1==2) and (a3==2) or (b2==2) and (c2==2)) and (a2==0) and(t==1):
+            p2=1
 
-    if ((a1==1) and (c1==1) or (b2==1) and (b3==1))  and (b1==0) and(t==1):
-        v4=1
+        if ((a1==2) and (a2==2) or (c1==2) and (b2==2) or (b3==2) and (c3==2)) and (a3==0) and(t==1):
+            p3=1
 
-    if ((a1==1) and (c3==1) or (a3==1) and (c1==1) or (a2==1) and (c2==1) or (b1==1) and (b3==1))  and (b2==0) and(t==1):
-        v5=1
+        if ((a1==2) and (c1==2) or (b2==2) and (b3==2)) and (b1==0) and(t==1):
+            p4=1
 
-    if ((a3==1) and (c3==1) or (b1==1) and (b2==1))  and (b3==0) and(t==1):
-        v6=1
+        if ((a1==2) and (c3==2) or (a3==2) and (c1==2) or (a2==2) and (c2==2) or (b1==2) and (b3==2)) and (b2==0) and(t==1):
+            p5=1
 
-    if ((a1==1) and (b1==1) or (a3==1) and (b2==1) or (c2==1) and (c3==1))  and (c1==0) and(t==1):
-        v7=1
+        if ((a3==2) and (c3==2) or (b1==2) and (b2==2)) and (b3==0) and(t==1):
+            p6=1
 
-    if ((a2==1) and (b2==1) or (c1==1) and (c3==1))  and (c2==0) and(t==1):
-        v8=1
+        if (((a1==2) and (b1==2)) or ((a3==2) and (b2==2)) or ((c2==2) and (c3==2))) and (c1==0) and(t==1):
+            p7=1
 
-    if ((a1==1) and (b2==1) or (a3==1) and (b3==1) or (c1==1) and (c2==1)) and (c3==0) and(t==1):
-        v9=1
+        if ((a2==2) and (b2==2) or (c1==2) and (c3==2)) and (c2==0) and(t==1):
+            p8=1
 
-
-#Priorité 1 de l'IA : gagner
-
-    if (p1==1) and (a1==0) and(t==1):
-        ra1()
-        a1=2
-        t=0
-        e=e+1
-    if (p2==1) and (a2==0) and(t==1):
-        ra2()
-        a2=2
-        t=0
-        e=e+1
-    if (p3==1) and (a3==0) and(t==1):
-        ra3()
-        a3=2
-        t=0
-        e=e+1
-    if (p4==1) and (b1==0) and(t==1):
-        rb1()
-        b1=2
-        t=0
-        e=e+1
-    if (p5==1) and (b2==0) and(t==1):
-        rb2()
-        b2=2
-        t=0
-        e=e+1
-    if (p6==1) and (b3==0) and(t==1):
-        rb3()
-        b3=2
-        t=0
-    if (p7==1) and (c1==0) and(t==1):
-        rc1()
-        c1=2
-        t=0
-        e=e+1
-    if (p8==1) and (c2==0) and(t==1):
-        rc2()
-        c2=2
-        t=0
-        e=e+1
-    if (p9==1) and (c3==0) and(t==1):
-        rc3()
-        c3=2
-        t=0
-        e=e+1
+        if ((a1==2) and (b2==2) or (a3==2) and (b3==2) or (c1==2) and (c2==2)) and (c3==0) and(t==1):
+            p9=1
 
 
-
-
-
-#Priorité 2 de l'IA : bloquer le joueur
-
-    if (v1==1) and(t==1):
-        ra1()
-        a1=2
-        t=0
-        v1=0
-        e=e+1
-    if (v2==1) and(t==1):
-        ra2()
-        a2=2
-        t=0
-        v2=0
-        e=e+1
-    if (v3==1) and(t==1):
-        ra3()
-        a3=2
-        t=0
-        v3=0
-        e=e+1
-    if (v4==1) and(t==1) :
-        rb1()
-        b1=2
-        t=0
-        v4=0
-        e=e+1
-    if (v5==1) and(t==1):
-        rb2()
-        b2=2
-        t=0
-        v5=0
-        e=e+1
-    if (v6==1) and(t==1):
-        rb3()
-        b3=2
-        t=0
-        v6=0
-        e=e+1
-    if (v7==1) and(t==1):
-        rc1()
-        c1=2
-        t=0
-        v7=0
-        e=e+1
-    if (v8==1) and(t==1):
-        rc2()
-        c2=2
-        t=0
-        v8=0
-        e=e+1
-    if (v9==1) and(t==1):
-        rc3()
-        c3=2
-        t=0
-        v9=0
-        e=e+1
-
-
-#Priorité 3 de l'IA : Coup aléatoire
-    if(e!=9):
-        while(t==1):
-            r=randint(1,9)
-            if (r==1):
-                if (a1==0):
-                    ra1()
-                    a1=2
-                    t=0
-                    e=e+1
-            if (r==2):
-                if(a2==0):
-                    ra2()
-                    a2=2
-                    t=0
-                    e=e+1
-            if (r==3):
-                if(a3==0) :
-                    ra3()
-                    a3=2
-                    t=0
-                    e=e+1
-            if (r==4):
-                if(b1==0) :
-                    rb1()
-                    b1=2
-                    t=0
-                    e=e+1
-            if (r==5):
-                if(b2==0) :
-                    rb2()
-                    b2=2
-                    t=0
-                    e=e+1
-            if (r==6):
-                if (b3==0) :
-                    rb3()
-                    b3=2
-                    t=0
-                    e=e+1
-            if (r==7):
-                if(c1==0):
-                    rc1()
-                    c1=2
-                    t=0
-                    e=e+1
-            if (r==8):
-                if(c2==0):
-                    rc2()
-                    c2=2
-                    t=0
-                    e=e+1
-            if (r==9):
-                if(c3==0):
-                    rc3()
-                    c3=2
-                    t=0
-                    e=e+1
+    #Blocage de l'IA si le joueur peut gagner
             
-    else:
-        if((a1==1 or a1==2) and (a2==1 or a2==2) and (a3==1 or a3==2) and (b1==1 or b1==2) and (b2==1 or b2==2) and (b3==1 or b3==2) and (c1==1 or c1==2) and (c2==1 or c2==2) and (c3==1 or c3==2)):
-            egal()
-            t=3
+        if ((b1==1) and (c1==1) or (b2==1) and (c3==1) or (a2==1) and (a3==1))  and (a1==0) and(t==1):
+            v1=1
+
+        if ((a1==1) and (a3==1) or (b2==1) and (c2==1)) and (a2==0) and(t==1):
+            v2=1
+
+        if ((a1==1) and (a2==1) or (c1==1) and (b2==1) or (b3==1) and (c3==1))   and (a3==0) and(t==1):
+            v3=1
+
+        if ((a1==1) and (c1==1) or (b2==1) and (b3==1))  and (b1==0) and(t==1):
+            v4=1
+
+        if ((a1==1) and (c3==1) or (a3==1) and (c1==1) or (a2==1) and (c2==1) or (b1==1) and (b3==1))  and (b2==0) and(t==1):
+            v5=1
+
+        if ((a3==1) and (c3==1) or (b1==1) and (b2==1))  and (b3==0) and(t==1):
+            v6=1
+
+        if ((a1==1) and (b1==1) or (a3==1) and (b2==1) or (c2==1) and (c3==1))  and (c1==0) and(t==1):
+            v7=1
+
+        if ((a2==1) and (b2==1) or (c1==1) and (c3==1))  and (c2==0) and(t==1):
+            v8=1
+
+        if ((a1==1) and (b2==1) or (a3==1) and (b3==1) or (c1==1) and (c2==1)) and (c3==0) and(t==1):
+            v9=1
+
+
+    #Priorité 1 de l'IA : gagner
+
+        if (p1==1) and (a1==0) and(t==1):
+            ra1()
+            a1=2
+            t=0
+            e=e+1
+        if (p2==1) and (a2==0) and(t==1):
+            ra2()
+            a2=2
+            t=0
+            e=e+1
+        if (p3==1) and (a3==0) and(t==1):
+            ra3()
+            a3=2
+            t=0
+            e=e+1
+        if (p4==1) and (b1==0) and(t==1):
+            rb1()
+            b1=2
+            t=0
+            e=e+1
+        if (p5==1) and (b2==0) and(t==1):
+            rb2()
+            b2=2
+            t=0
+            e=e+1
+        if (p6==1) and (b3==0) and(t==1):
+            rb3()
+            b3=2
+            t=0
+        if (p7==1) and (c1==0) and(t==1):
+            rc1()
+            c1=2
+            t=0
+            e=e+1
+        if (p8==1) and (c2==0) and(t==1):
+            rc2()
+            c2=2
+            t=0
+            e=e+1
+        if (p9==1) and (c3==0) and(t==1):
+            rc3()
+            c3=2
+            t=0
+            e=e+1
+
+
+
+
+
+    #Priorité 2 de l'IA : bloquer le joueur
+
+        if (v1==1) and(t==1):
+            ra1()
+            a1=2
+            t=0
+            v1=0
+            e=e+1
+        if (v2==1) and(t==1):
+            ra2()
+            a2=2
+            t=0
+            v2=0
+            e=e+1
+        if (v3==1) and(t==1):
+            ra3()
+            a3=2
+            t=0
+            v3=0
+            e=e+1
+        if (v4==1) and(t==1) :
+            rb1()
+            b1=2
+            t=0
+            v4=0
+            e=e+1
+        if (v5==1) and(t==1):
+            rb2()
+            b2=2
+            t=0
+            v5=0
+            e=e+1
+        if (v6==1) and(t==1):
+            rb3()
+            b3=2
+            t=0
+            v6=0
+            e=e+1
+        if (v7==1) and(t==1):
+            rc1()
+            c1=2
+            t=0
+            v7=0
+            e=e+1
+        if (v8==1) and(t==1):
+            rc2()
+            c2=2
+            t=0
+            v8=0
+            e=e+1
+        if (v9==1) and(t==1):
+            rc3()
+            c3=2
+            t=0
+            v9=0
+            e=e+1
+
+
+    #Priorité 3 de l'IA : Coup aléatoire
+        if(e!=9):
+            while(t==1):
+                r=randint(1,9)
+                if (r==1):
+                    if (a1==0):
+                        ra1()
+                        a1=2
+                        t=0
+                        e=e+1
+                if (r==2):
+                    if(a2==0):
+                        ra2()
+                        a2=2
+                        t=0
+                        e=e+1
+                if (r==3):
+                    if(a3==0) :
+                        ra3()
+                        a3=2
+                        t=0
+                        e=e+1
+                if (r==4):
+                    if(b1==0) :
+                        rb1()
+                        b1=2
+                        t=0
+                        e=e+1
+                if (r==5):
+                    if(b2==0) :
+                        rb2()
+                        b2=2
+                        t=0
+                        e=e+1
+                if (r==6):
+                    if (b3==0) :
+                        rb3()
+                        b3=2
+                        t=0
+                        e=e+1
+                if (r==7):
+                    if(c1==0):
+                        rc1()
+                        c1=2
+                        t=0
+                        e=e+1
+                if (r==8):
+                    if(c2==0):
+                        rc2()
+                        c2=2
+                        t=0
+                        e=e+1
+                if (r==9):
+                    if(c3==0):
+                        rc3()
+                        c3=2
+                        t=0
+                        e=e+1
+        lose()
+######################################################################### full aléatoire
+    if (y==2):
+        while((t==1) and (e<=9)):
+            random()
+            print(r)
+            print(tableau[r])
+            r=tableau[r]
+            if (r==1) and a1==0:
+                ra1()
+                a1=2
+                t=0
+                e=e+1
+                tableau.remove(1)
+            if (r==2) and a2==0:
+                ra2()
+                a2=2
+                t=0
+                e=e+1
+                tableau.remove(2)
+            if (r==3) and a3==0:
+                ra3()
+                a3=2
+                t=0
+                e=e+1
+                tableau.remove(3)
+            if (r==4) and b1==0:
+                rb1()
+                b1=2
+                t=0
+                e=e+1
+                tableau.remove(4)
+            if (r==5) and b2==0:
+                rb2()
+                b2=2
+                t=0
+                e=e+1
+                tableau.remove(5)
+            if (r==6) and b3==0:
+                rb3()
+                b3=2
+                t=0
+                e=e+1
+                tableau.remove(6)
+            if (r==7) and c1==0:
+                rc1()
+                c1=2
+                t=0
+                e=e+1
+                tableau.remove(7)
+            if (r==8) and c2==0:
+                rc2()
+                c2=2
+                t=0
+                e=e+1
+                tableau.remove(8)
+            if (r==9) and c3==0:
+                rc3()
+                c3=2
+                t=0
+                e=e+1
+                tableau.remove(9)
+            print (tableau)
+
+            lose()
+                
+
+
 
 
 
 
 #défaite
-    if (a1==2) and (a2==2) and (a3==2):
-        deft()
+    
+
+    if(a1!=0) and (a2!=0) and (a3!=0) and (b1!=0) and (b2!=0) and (b3!=0) and (c1!=0) and (c2!=0) and (c3!=0) and (t!=3):
+        egal()
         t=3
-        i=i+1
-    if (b1==2) and (b2==2) and (b3==2):
-        deft()
-        t=3
-        i=i+1
-    if (c1==2) and (c2==2) and (c3==2):
-        deft()
-        t=3
-        i=i+1
-    if (a1==2) and (b1==2) and (c1==2):
-        deft()
-        t=3
-        i=i+1
-    if (a2==2) and (b2==2) and (c2==2):
-        deft()
-        t=3
-        i=i+1
-    if (a3==2) and (b3==2) and (c3==2):
-        deft()
-        t=3
-        i=i+1
-    if (a1==2) and (b2==2) and (c3==2):
-        deft()
-        t=3
-        i=i+1
-    if (a3==2) and (b2==2) and (c1==2):
-        deft()
-        t=3
-        i=i+1
-  
 
 canvas.bind("<Button-1>", clicSouris) 
 canvas.pack()
 fenetre.mainloop()
-
-#voir comment effacer les crois et rond pour une nouvelle partie
-#j victoire i défaite
-#vérifier la condition quil y ai une victoire au dernier coup psk la dernier coup =forcement égalité donc voir si il y a un beug ou non
-#pour faire commencer l'ordi on a juste a maitre un if initial et faire t=1 et faire trouver un r direct ou juste merttre t est égale a 1 a la base
-#pour un niv total aleatoire il faudrait voir pour crée une liste de 1 a 9 et choisir un nbr aléatoire dans la liste que long vide apres chaque choix
-#niveau difficile a voir mais il faut juste prevoir toute les possibilités
-
