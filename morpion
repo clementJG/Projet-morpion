@@ -122,7 +122,6 @@ def random():
     global tableau
     global r
     r=randint(0,len(tableau)-1)
-    print (r)
 
 def vict():
     txt = canvas.create_text(720, 80, text="VICTOIRE", font="Colibri 20", fill="forest green")
@@ -356,63 +355,63 @@ def clicSouris(event):
         t=1
         e=e+1
         tableau.remove(1)
-        print(tableau)
+
     if (xClic)>210 and (xClic)<410 and (yClic)>10 and (yClic)<210 and (a2==0) and (t==0):
         ca2()
         a2=1
         t=1
         e=e+1
         tableau.remove(2)
-        print(tableau)
+
     if (xClic)>410 and (xClic)<610 and (yClic)>10 and (yClic)<210 and (a3==0) and (t==0):
         ca3()
         a3=1
         t=1
         e=e+1
         tableau.remove(3)
-        print(tableau)
+
     if (xClic)>10 and (xClic)<210 and (yClic)>210 and (yClic)<410 and (b1==0) and (t==0):
         cb1()
         b1=1
         t=1
         e=e+1
         tableau.remove(4)
-        print(tableau)
+
     if (xClic)>210 and (xClic)<410 and (yClic)>210 and (yClic)<410 and (b2==0) and (t==0):
         cb2()
         b2=1
         t=1
         e=e+1
         tableau.remove(5)
-        print(tableau)
+
     if (xClic)>410 and (xClic)<610 and (yClic)>210 and (yClic)<410 and (b3==0) and (t==0):
         cb3()
         b3=1
         t=1
         e=e+1
         tableau.remove(6)
-        print(tableau)
+
     if (xClic)>10 and (xClic)<210 and (yClic)>410 and (yClic)<610 and (c1==0) and (t==0):
         cc1()
         c1=1
         t=1
         e=e+1
         tableau.remove(7)
-        print(tableau)
+
     if (xClic)>210 and (xClic)<410 and (yClic)>410 and (yClic)<610 and (c2==0) and (t==0):
         cc2()
         c2=1
         t=1
         e=e+1
         tableau.remove(8)
-        print(tableau)
+
     if (xClic)>410 and (xClic)<610 and (yClic)>410 and (yClic)<610 and (c3==0) and (t==0):
         cc3()
         c3=1
         t=1
         e=e+1
         tableau.remove(9)
-        print(tableau)
+
     
 #victoire
 
@@ -655,8 +654,6 @@ def clicSouris(event):
     if (y==2):
         while((t==1) and (e<=9)):
             random()
-            print(r)
-            print(tableau[r])
             r=tableau[r]
             if (r==1) and a1==0:
                 ra1()
@@ -712,8 +709,6 @@ def clicSouris(event):
                 t=0
                 e=e+1
                 tableau.remove(9)
-            print (tableau)
-
             lose()
                 
 
