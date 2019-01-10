@@ -8,14 +8,14 @@ fenetre = Tk()
 fenetre.title("Morpion")
 
 #tour 0=nous 1=ordi 3=stop
-t=int(input("entre 0 pour commencer ou 1 pour être 2ème: "))
+t=int(input("entrer 0 pour commencer ou 1 pour être 2ème: "))
 while ( t!=0 and t!=1):
-    t=int(input("entre 0 pour commencer ou 1 pour être 2ème: "))
+    t=int(input("entrer 0 pour commencer ou 1 pour être 2ème: "))
 
 ########niveau ordi
-y=int(input("entrer le niveau de lordinateur 1=normal 2=aléatoire: "))
+y=int(input("entrer le niveau de l'ordinateur 1=normal 2=aléatoire: "))
 while ( y!=1 and y!=2):
-    y=int(input("entrer le niveau de lordinateur 1=normal 2=aléatoire: "))
+    y=int(input("entrer le niveau de l'ordinateur 1=normal 2=aléatoire: "))
     
 print("Le tableau s'est affiché dans une nouvelle page: ")
 
