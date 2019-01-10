@@ -13,9 +13,9 @@ while ( t!=0 and t!=1):
     t=int(input("entre 0 pour commencer ou 1 pour être 2ème"))
 
 ########niveau ordi
-y=int(input("entrer le niveau de lordinateur 1=normale 2=aléatoire"))
+y=int(input("entrer le niveau de lordinateur 1=normal 2=aléatoire"))
 while ( y!=1 and y!=2):
-    y=int(input("entrer le niveau de lordinateur 1=normale 2=aléatoire"))
+    y=int(input("entrer le niveau de lordinateur 1=normal 2=aléatoire"))
     
 print("Le tableau s'est affiché dans une nouvelle page")
 
